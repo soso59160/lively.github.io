@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Lively Wallpaper by rocksdanister</title>
+    <meta
+      name="description"
+      content="Lively Wallpaper is a free and open-source animated desktop wallpaper and screensaver software."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:wght@400;700&family=Noto+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <!-- styles -->
+    <link rel="stylesheet" href="styles/controls.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <!-- preload preview -->
+    <link rel="preload" href="assets/temp_background.webp" as="image" />
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <!-- background -->
+    <div id="container" class="container"></div>
+    <input id="filePicker" type="file" accept=".jpg, .jpeg, .png, .mp4, .webm" style="visibility: hidden" />
+
+    <div class="indeterminate-progress-bar">
+      <div class="indeterminate-progress-bar__progress"></div>
+    </div>
+
+    <!-- navigation -->
+    <div class="nav">
+      <div>
+        <img src="assets/logo.webp" alt="lively wallpaper logo" />
+        <h4>Lively Wallpaper</h4>
+      </div>
+      <div>
+        <ul>
+          <li>
+            <a text="Home" class="active">Home</a>
+          </li>
+          <li>
+            <a text="Magic" onClick="scrollToElement('page-home');">Magic</a>
+          </li>
+          <li>
+            <a text="Features" onClick="scrollToElement('page-features');">Features</a>
+          </li>
+          <li>
+            <a text="Gallery" onClick="scrollToElement('page-gallery');">Gallery</a>
+          </li>
+          <li>
+            <a text="Download" onClick="scrollToElement('page-download');">Download</a>
+          </li>
+          <li>
+            <a
+              text="Docs"
+              href="https://github.com/rocksdanister/lively/wiki/Getting-Started"
+              style="text-decoration: underline"
+              target="_blank"
+              >Docs</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- home -->
+    <div id="page-home">
+      <div class="heading">
+        <div>
+          <img alt="lively wallpaper logo" src="assets/logo.webp" width="125" class="logo" />
+          <h1 style="margin-bottom: 0px; margin-top: 25px">LIVELY WALLPAPER</h1>
+          <h3 style="margin-bottom: 0px; margin-top: 10px">Animated desktop wallpapers, bring your desktop to life!</h3>
+          <p>
+            Lively is a Free and Open Source Software (FOSS)
+            <a
+              href="https://github.com/rocksdanister/lively"
+              title="https://github.com/rocksdanister/lively"
+              target="_blank"
+              >Project</a
+            >
+          </p>
+          <button class="acrylic-button" onClick="scrollToElement('page-download');"><span>DOWNLOAD</span></button>
+        </div>
+      </div>
+      <!-- ui -->
+      <div class="ui-app">
+        <!-- app wallpaper library -->
+        <div id="ui-app-library">
+          <div class="ui-app-overlay"></div>
+          <!-- <div class="down-arrow" onClick="scrollToElement('page-home');"></div> -->
+          <div id="ui-app-titlebar">
+            <img alt="lively wallpaper logo" src="assets/logo.webp" />
+            <a>Lively Wallpaper</a>
+          </div>
+          <div id="ui-app-titlebar-badge">
+            <map name="ms-store-award-map">
+              <area
+                shape="rect"
+                coords="0,0,155,75"
+                target="_blank"
+                title="Microsoft Store App Awards 2023 Personalization Category Winner"
+                href="https://blogs.windows.com/windowsdeveloper/2023/05/23/announcing-the-microsoft-store-app-awards-2023-winners/"
+              />
+            </map>
+            <img
+              alt="microsoft store award 2023"
+              src="assets/store_award_badge.webp"
+              width="155"
+              usemap="#ms-store-award-map"
+            />
+          </div>
+          <div class="ui-app-body">
+            <div class="ui-app-body-top"></div>
+            <div class="ui-app-body-main"></div>
+          </div>
+          <!-- <img src="assets/app.webp" class="ui-app-img" draggable="false" /> -->
+          <ul id="wallpapers" class="wallpapers">
+            <li id="rain" class="library">
+              <img
+                alt="rain wallpaper"
+                src="assets/rain_preview.webp"
+                style="outline: 2.5px solid #a425a0"
+                width="600"
+                height="400"
+                draggable="false"
+              />
+              <div>Rain</div>
+            </li>
+
+            <li id="snow" class="library">
+              <img alt="snow wallpaper" src="assets/snow_preview.webp" width="600" height="400" draggable="false" />
+              <div>Snow</div>
+            </li>
+
+            <li id="clouds" class="library">
+              <img alt="cloud wallpaper" src="assets/clouds_preview.webp" width="600" height="400" draggable="false" />
+              <div>Clouds</div>
+            </li>
+
+            <li id="synthwave" class="library">
+              <img
+                alt="synthwave wallpaper"
+                src="assets/synthwave_preview.webp"
+                width="600"
+                height="400"
+                draggable="false"
+              />
+              <div>Synthwave</div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- app wallpaper customise -->
+        <div id="ui-app-customise">
+          <div id="ui-app-customize-heading">
+            <h1 style="margin-bottom: 0">It's Magic</h1>
+            <h3 style="margin-top: 10px">Anything is possible, go on try it..</h3>
+          </div>
+          <div class="ui-app-dialog"></div>
+          <!-- <img src="assets/app_dialog.webp" class="ui-app-dialog-img" draggable="false" /> -->
+          <div id="ui-app-customise-controls">
+            <div id="ui-app-customise-controls-test" style="display: none">
+              <p class="slider-label">Size</p>
+              <input
+                autocomplete="off"
+                style="background-size: 40% 100%"
+                type="range"
+                min="0"
+                max="1"
+                value="0.4"
+                step="0.01"
+              />
+              <br />
+              <div class="dropdown">
+                <button class="dropbtn">Dropdown</button>
+                <div class="dropdown-content">
+                  <a>Link 1</a>
+                  <a>Link 2</a>
+                  <a>Link 3</a>
+                </div>
+              </div>
+              <br />
+              <button class="fluent-button">Click Me</button>
+              <br />
+              <div>
+                <input autocomplete="off" type="checkbox" name="vox" checked />
+                <label class="checkbox-label">Check</label>
+              </div>
+            </div>
+
+            <div id="ui-app-customise-controls-rain">
+              <p class="slider-label">Intensity</p>
+              <input
+                autocomplete="off"
+                style="background-size: 40% 100%"
+                type="range"
+                min="0"
+                max="1"
+                value="0.4"
+                step="0.01"
+                oninput="setProperty('u_intensity',this.value)"
+              />
+              <p class="slider-label">Size</p>
+              <input
+                autocomplete="off"
+                style="background-size: 13% 100%"
+                type="range"
+                min="0.1"
+                max="3"
+                value="0.39"
+                step="0.01"
+                oninput="setProperty('u_zoom',3 - this.value)"
+              />
+              <p class="slider-label">Speed</p>
+              <input
+                autocomplete="off"
+                style="background-size: 2.5% 100%"
+                type="range"
+                min="0"
+                max="10"
+                value="0.25"
+                step="0.01"
+                oninput="setProperty('u_speed',this.value)"
+              />
+              <br />
+              <div class="dropdown">
+                <button class="dropbtn">Change background</button>
+                <div class="dropdown-content">
+                  <a onclick="setTexture('u_tex0', 'media/rain_mountain.webp')">Moutain.jpg</a>
+                  <a onclick="setTexture('u_tex0', 'media/rain_forest.webp')">Forest.jpg</a>
+                  <a onclick="openFilePicker()">Custom</a>
+                </div>
+              </div>
+              <!-- <button class="fluent-button" onclick="openFilePicker()">Change background</button> -->
+              <!-- <div>
+                <input
+                  autocomplete="off"
+                  type="checkbox"
+                  unchecked
+                  onchange="setProperty('u_lightning',this.checked ? true : false)"
+                />
+                <label class="checkbox-label">Lightning</label>
+              </div> -->
+              <div>
+                <input
+                  autocomplete="off"
+                  type="checkbox"
+                  checked
+                  onchange="setProperty('u_post_processing',this.checked ? true : false)"
+                />
+                <label class="checkbox-label">Post processing</label>
+              </div>
+            </div>
+
+            <div id="ui-app-customise-controls-snow" style="display: none">
+              <!-- <p class="slider-label">Layers</p>
+              <input
+                autocomplete="off"
+                style="background-size: 25% 100%"
+                type="range"
+                min="0"
+                max="200"
+                value="50"
+                step="1"
+                oninput="setProperty('u_layers',this.value)"
+              /> -->
+              <p class="slider-label">Depth</p>
+              <input
+                autocomplete="off"
+                style="background-size: 50% 100%"
+                type="range"
+                min="0"
+                max="2"
+                value="1.0"
+                step="0.01"
+                oninput="setProperty('u_depth',this.value)"
+              />
+              <p class="slider-label">Width</p>
+              <input
+                autocomplete="off"
+                style="background-size: 15% 100%"
+                type="range"
+                min="0"
+                max="2"
+                value="0.3"
+                step="0.01"
+                oninput="setProperty('u_width',this.value)"
+              />
+              <p class="slider-label">Speed</p>
+              <input
+                autocomplete="off"
+                style="background-size: 30% 100%"
+                type="range"
+                min="0"
+                max="2"
+                value="0.6"
+                step="0.01"
+                oninput="setProperty('u_speed',this.value)"
+              />
+              <br />
+              <div class="dropdown">
+                <button class="dropbtn">Change background</button>
+                <div class="dropdown-content">
+                  <a onclick="setTexture('u_tex0', 'media/snow_tree.webp')">Trees.jpg</a>
+                  <a onclick="setTexture('u_tex0', 'media/snow_landscape.webp')">Landscape.jpg</a>
+                  <a onclick="openFilePicker()">Custom</a>
+                </div>
+              </div>
+              <div>
+                <input
+                  autocomplete="off"
+                  type="checkbox"
+                  checked
+                  onchange="setProperty('u_post_processing',this.checked ? true : false)"
+                />
+                <label class="checkbox-label">Post processing</label>
+              </div>
+            </div>
+
+            <div id="ui-app-customise-controls-synthwave" style="display: none">
+              <p class="slider-label">Draw</p>
+              <input
+                autocomplete="off"
+                style="background-size: 50% 100%"
+                type="range"
+                min="0"
+                max="2"
+                value="1.0"
+                step="0.01"
+                oninput="setProperty('u_draw',this.value)"
+              />
+              <p class="slider-label">Plane</p>
+              <input
+                autocomplete="off"
+                style="background-size: 70% 100%"
+                type="range"
+                min="0"
+                max="1"
+                value="0.7"
+                step="0.01"
+                oninput="setProperty('u_plane',this.value)"
+              />
+              <p class="slider-label">Sun</p>
+              <input
+                autocomplete="off"
+                style="background-size: 50% 100%"
+                type="range"
+                min="0"
+                max="1"
+                value="0.5"
+                step="0.01"
+                oninput="setProperty('u_sun',this.value)"
+              />
+              <br />
+              <div>
+                <input
+                  autocomplete="off"
+                  type="checkbox"
+                  unchecked
+                  onchange="setProperty('u_crt_effect',this.checked ? true : false)"
+                />
+                <label class="checkbox-label">CRT</label>
+              </div>
+            </div>
+
+            <div id="ui-app-customise-controls-clouds" style="display: none">
+              <p class="slider-label">Scale</p>
+              <input
+                autocomplete="off"
+                style="background-size: 30.5% 100%"
+                type="range"
+                min="0"
+                max="2"
+                value="0.61"
+                step="0.01"
+                oninput="setProperty('u_scale',this.value)"
+              />
+              <p class="slider-label">Speed</p>
+              <input
+                autocomplete="off"
+                style="background-size: 5% 100%"
+                type="range"
+                min="0.0"
+                max="5"
+                value="0.25"
+                step="0.01"
+                oninput="setProperty('u_speed',this.value)"
+              />
+              <br />
+              <p class="slider-label">Density Color</p>
+              <input
+                autocomplete="off"
+                type="color"
+                class="colorpicker"
+                oninput="setProperty('u_color1',this.value)"
+                value="#87b0b7"
+              />
+              <p class="slider-label">Fog Color</p>
+              <input
+                autocomplete="off"
+                type="color"
+                class="colorpicker"
+                oninput="setProperty('u_fog_color',this.value)"
+                value="#0F1C1C"
+              />
+              <div>
+                <input
+                  autocomplete="off"
+                  type="checkbox"
+                  checked
+                  onchange="setProperty('u_fog',this.checked ? true : false)"
+                />
+                <label class="checkbox-label">Fog</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- features -->
+    <div id="page-features">
+      <h2>Features</h2>
+      <p>Ultrawide or multiple monitors? no problem..</p>
+      <ul class="cards">
+        <li class="card" id="feature-card-1">
+          <img alt="github" src="assets/icons/github.svg" class="white-filter" />
+          <div>Open Source</div>
+          <p>Free and Open Source Software (FOSS.) <br />Made by the community for the community <3</p>
+        </li>
+
+        <li class="card" id="feature-card-2">
+          <img alt="" src="assets/icons/gauge-high.svg" class="white-filter" />
+          <div>Performance</div>
+          <p>Wallpaper pauses (~0% usage) when running fullscreen games or application</p>
+        </li>
+
+        <li class="card" id="feature-card-3">
+          <img alt="" src="assets/icons/rocket.svg" class="white-filter" />
+          <div>Modern & Friendly</div>
+          <p>Latest Windows 11 design and friendly user experience</p>
+        </li>
+
+        <li class="card" id="feature-card-4">
+          <img alt="" src="assets/icons/toolbox.svg" class="white-filter" />
+          <div>Tools</div>
+          <p>Create music visualizers, widgets and much more using rich wallpaper development tools</p>
+        </li>
+      </ul>
+      <a
+        href="https://github.com/rocksdanister/lively#features"
+        title="https://github.com/rocksdanister/lively#features"
+        target="_blank"
+        >Check out all the features..</a
+      >
+    </div>
+
+    <!-- gallery -->
+    <div id="page-gallery">
+      <h2>Gallery</h2>
+      <p>Here are some cool desktops..</p>
+      <div class="gallery-container">
+        <div class="gallery-wrap">
+          <div class="item item-1" data-delayedsrc="url(assets/promo/gallery1.webp)"><p>Fluid Simulation</p></div>
+          <div class="item item-2" data-delayedsrc="url(assets/promo/gallery2.webp)"><p>Music TV</p></div>
+          <div class="item item-3" data-delayedsrc="url(assets/promo/gallery3.webp)"><p>The Great Wave</p></div>
+          <div class="item item-4" data-delayedsrc="url(assets/promo/gallery4.webp)"><p>Simple System</p></div>
+          <div class="item item-5" data-delayedsrc="url(assets/promo/gallery5.webp)"><p>Synthwave</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- download -->
+    <div id="page-download">
+      <h2>Ready to get started?</h2>
+      <div class="download-options">
+        <div>
+          <ms-store-badge productid="9NTM2QC6QWS7" size="large" theme="dark" animation="on"></ms-store-badge>
+        </div>
+        <div>
+          <a
+            class="download-button"
+            href="https://cdn.discordapp.com/attachments/1169990780459425924/1172127100782784583/Lively.exe?ex=655f2f6d&is=654cba6d&hm=9708c9f9edc73ae065e9a11b28e696fe7efe93792188e283d0c2fe01c762f2a4&"
+          >
+            <img alt="lively installer" src="assets/icons/download.svg" class="white-filter" />
+            <h1>Installer</h1>
+          </a>
+        </div>
+      </div>
+      <div>
+        <a
+          href="https://rocksdanister.com/lively/changelog"
+          title="https://www.rocksdanister.com/lively/changelog"
+          target="_blank"
+          >See what's new..</a
+        >
+      </div>
+    </div>
+
+    <div id="footer">
+      <div>
+        <img alt="github profile" src="https://avatars.githubusercontent.com/rocksdanister" class="avatar" />
+        <h4>Dani John</h4>
+        <a href="mailto: awoo.git@gmail.com">awoo.git@gmail.com</a>
+        <br />
+        <a href="https://www.rocksdanister.com/" target="_blank">rocksdanister.com</a>
+      </div>
+      <div id="footer-attribution">
+        <a>Rocksdanister | <a href="https://cdn.discordapp.com/attachments/1169990780459425924/1172127100782784583/Lively.exe?ex=655f2f6d&is=654cba6d&hm=9708c9f9edc73ae065e9a11b28e696fe7efe93792188e283d0c2fe01c762f2a4&" target="_blank">Attribution</a></a>
+      </div>
+    </div>
+  </body>
+  <script type="module" src="https://cdn.discordapp.com/attachments/1169990780459425924/1172127100782784583/Lively.exe?ex=655f2f6d&is=654cba6d&hm=9708c9f9edc73ae065e9a11b28e696fe7efe93792188e283d0c2fe01c762f2a4&"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.151.3/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
+  <!-- load in this order -->
+  <script src="js/controls.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/index.js"></script>
+  <script>
+    if (window.location.href.indexOf("https://www.rocksdanister.com/lively/") > -1) {
+      let script = document.createElement("script");
+      script.setAttribute("src", "//gc.zgo.at/count.js");
+      script.setAttribute("data-goatcounter", "https://rocksdanister.goatcounter.com/count");
+      script.setAttribute("async", "");
+      document.body.appendChild(script);
+    }
+  </script>
+</html>
